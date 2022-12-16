@@ -9,7 +9,7 @@
 }
 
 .calander-container {
-  width: 50%;
+  width: 55%;
   margin: auto;
   position: relative;
   top: -500px;
@@ -25,4 +25,26 @@
 
 .weekdays-container .week-day {
   color: #808080;
+}
+
+.calander {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.week {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+button {
+  background: white;
+  border: none;
 }
