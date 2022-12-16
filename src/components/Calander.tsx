@@ -1,13 +1,28 @@
-import React from "react";
+import React, { MouseEvent, useState } from "react";
 import { Weekday, Date } from "../../types";
 import { monthDates } from "../configs/MonthDays";
 import { Weekdays } from "../configs/Weekday";
+import { LeftIcon } from "../assets/icons/LeftIcon";
+import { RightIcon } from "../assets/icons/RightIcon";
 
 export const Calander: React.FC<{}> = ({}) => {
+  const [selectedDate, setSelectedDate] = useState<string | null>();
+
+  const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setSelectedDate(e.currentTarget.getAttribute("value"));
+  };
+
   const genDates = (date: number) => {
+    let selectedDateNumber: number = selectedDate ? parseInt(selectedDate) : 0;
     for (let i = 0; i < 7; i++) {
       return (
-        <button className="date" value={date}>
+        <button
+          className={`date ${date == 18 ? "today" : ""} ${
+            date == selectedDateNumber ? "selected" : ""
+          } `}
+          onClick={handleChange}
+          value={date}
+        >
           <p>{date}</p>
         </button>
       );
@@ -26,7 +41,11 @@ export const Calander: React.FC<{}> = ({}) => {
 
   return (
     <div className="calander-container">
-      <div className="datepicker-container"></div>
+      <div className="datepicker-container">
+        <LeftIcon />
+        <span>Febuary 2022</span>
+        <RightIcon />
+      </div>
       <div className="weekdays-container">
         {Weekdays.map((day) => (
           <div className="week-day">{day}</div>
